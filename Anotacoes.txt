@@ -1,0 +1,44 @@
+Metodos HTTP:
+get -> listar
+post -> criar
+put -> editar varios
+patch -> editar um
+delete -> deletar
+
+app.get('/usuarios') -> listando usuarios
+app.post('/usuarios') -> criando usuarios
+app.put('/usuarios') -> editando usuarios
+app.delete('/usuarios') -> deletando usuarios
+
+HTTP Status:
+200 -> Sucesso na requisição
+400 -> Erro de cliente (FrontEnd)
+500 -> Erro de servidor (BackEnd)
+
+As rotas precisam de duas coisas:
+1- tipo de rota / metodo HTTP
+2- endereço - EX: www.lojadoseuze.com/produtos
+
+request -> req = fazendo requisição
+response -> res = retornando uma resposta
+
+Comando para restart automatico do servidor: node --watch server.js
+isso faz com que eu não tenha que parar e executar novamente o servidor
+
+query params(GET) -> faz com que eu mande informações de parametros pela minha URL
+utilizamos mais ele quando não é uma informação importante
+
+route params(GET / PUT / DELTE) -> buscar, deletar, editar algo especifico
+
+body params(POST e PUT) -> utilizamos quando é muitas infomações ou infomações delicadas
+EX: numero de cartão, registros como cpf
+
+**********************************************
+Login e senha do banco de dados da minha API
+Username: ghorta800
+senha: hwE0xoy7h7FVWaC2
+**********************************************
+
+PRISMA:
+Rodando o comando -> npx prisma studio
+ele faz com que abra uma interface grafica para que eu consiga ver meu banco    
