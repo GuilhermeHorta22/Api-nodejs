@@ -41,4 +41,10 @@ senha: hwE0xoy7h7FVWaC2
 
 PRISMA:
 Rodando o comando -> npx prisma studio
-ele faz com que abra uma interface grafica para que eu consiga ver meu banco    
+ele faz com que abra uma interface grafica para que eu consiga ver meu banco
+
+await: serve para avisar o javascript que vai voltar algo, então ele tem que esperar. Usamos quando
+vamos acessar o banco de dados
+*O comando await só se usa dentro de uma função async
+
+query params -> serve para filtrar alguns registros do nosso banco de dados

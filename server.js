@@ -7,19 +7,67 @@ const prisma = new PrismaClient() //tudo que a gente precisar vai estar aqui den
 const app = express();
 app.use(express.json()) //estou avisando o express que vou utiliza o formato json
 
-const user = []
-
 //nesse caso eu vou ter que pegar oque chegou atraves do req, e assim cadastrar o usuario
-app.post('/usuarios', (req,res) =>{
-    user.push(req.body) //salvando o usuario na varivael criada
+app.post('/usuarios', async (req,res) =>{
+    await prisma.user.create({ //eu tenho que mandar oque está mapeado lá
+        data: { //vou mandar para o banco oque está vindo na requisição
+            email: req.body.email,
+            name: req.body.name,
+            age: req.body.age
+        }
+    })
     
     //dizendo que deu certo e mostrando para ele o usuario criado
     res.status(201).json(req.body)
 })
 
 //criando uma rota que devolva algo
-app.get('/usuarios', (req,res) =>{
-    res.status(200).json(user) //retornando uma resposta
+app.get('/usuarios', async (req,res) =>{
+    let users = []
+    if(req.query)
+    {
+        users = await prisma.user.findMany({
+            where: {
+                name: req.query.name,
+                email: req.query.email,
+                age: req.query.age
+            }
+        })
+    }
+    else
+        users = await prisma.user.findMany()
+    //buscando no banco os registros cadastrado nele
+    
+    res.status(200).json(users) //retornando uma resposta
+})
+
+//alterando um usuario do nosso banco de dados
+//quando tem os : no caminho indica que é uma variavel que está sendo passada
+app.put('/usuarios/:id', async (req,res) => {
+    console.log(req)
+    await prisma.user.update({
+        where: {
+            id: req.params.id
+        },
+        data: {
+            email: req.body.email,
+            name: req.body.name,
+            age: req.body.age
+        }
+    })
+    res.status(201).json(req.body)
+})
+
+//função que busca um usuario pelo id e deleta ele, esse id é parassado por parametro na url da requisição
+app.delete('/usuarios/:id', async (req,res) => {
+    await prisma.user.delete({
+        where: {
+            id: req.params.id
+        }
+    })
+
+    //retornando uma mensagem de sucesso
+    res.status(200).json({message: 'Usuário deletado com sucesso!'})
 })
 
 app.listen(3000)
