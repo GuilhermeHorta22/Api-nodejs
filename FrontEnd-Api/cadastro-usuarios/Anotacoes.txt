@@ -1,0 +1,4 @@
+REACT -> é uma mistura de JavaScript com html, então ele vai ser uma função do tipo js que mistura
+com html para formar as paginas.
+Funções -> tem que ser sempre com a primeira letra maiuscula
+Return -> tudo que estiver dentro do return de html vai ser mostrado na tela para nós

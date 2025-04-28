@@ -1,11 +1,12 @@
 import express from 'express' //tenho que importar a biblioteca, mesmo que eu tenha instalado ela
-
+import cors from 'cors'
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient() //tudo que a gente precisar vai estar aqui dentro
 
 //declarando uma variavel para receber o express como uma função, e assim eu conseguir acessar tudo
 const app = express();
 app.use(express.json()) //estou avisando o express que vou utiliza o formato json
+app.use(cors()) //diz quais paginas pode acessar o BackEnd
 
 //nesse caso eu vou ter que pegar oque chegou atraves do req, e assim cadastrar o usuario
 app.post('/usuarios', async (req,res) =>{
@@ -24,7 +25,7 @@ app.post('/usuarios', async (req,res) =>{
 //criando uma rota que devolva algo
 app.get('/usuarios', async (req,res) =>{
     let users = []
-    if(req.query)
+    if(req.query.name || req.query.email || req.query.age)
     {
         users = await prisma.user.findMany({
             where: {
@@ -71,6 +72,7 @@ app.delete('/usuarios/:id', async (req,res) => {
 })
 
 app.listen(3000)
+
 
 /*
     objetivo é criar nossa API de usuarios com:

@@ -48,3 +48,18 @@ vamos acessar o banco de dados
 *O comando await só se usa dentro de uma função async
 
 query params -> serve para filtrar alguns registros do nosso banco de dados
+
+npm install axios -> biblioteca para facilitar na conexão do frontEnd com o backEnd
+
+quando uma pagina se chama index eu não preciso passar o caminho dela por inteiro, apenas a pasta já serve
+Ex: /FrontEnd-Api/services -> puxa o index sem precisar escrever /FrontEnd-Api/services/index.js
+
+useState -> eu crio uma variavel usando ele para que sempre que alterar o valor dessa variavel mude tambem na tela
+
+  async function deleteUsers(id)
+  {
+    await api.delete(`/usuarios/${id}`) //coloca a `` para conseguir atribuir uma variavel na URL
+    getUsers()
+  }
+
+  onClick={() => deleteUsers(user.id)}
